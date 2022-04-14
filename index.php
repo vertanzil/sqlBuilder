@@ -1,11 +1,12 @@
 <?php
 
-use sqlBuilder\sqlBuilder;
+use SqlBuilder\SqlBuilder;
+
 
 echo "This is a test";
 
 
-$sqlBuilder = new sqlBuilder();
+$sqlBuilder = new SqlBuilder();
 
 
 $sqlBuilder

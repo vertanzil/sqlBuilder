@@ -1,11 +1,11 @@
 <?php
 
-namespace sqlBuilder;
+namespace SqlBuilder;
 
 /**
  * Class QueryBuilder
  */
-class sqlBuilder
+class SqlBuilder
 {
     /**
      * @var array<string>
