@@ -1,16 +1,10 @@
 <?php
-
-use SqlBuilder\SqlBuilder;
-
-
-echo "This is a test";
-
-
-$sqlBuilder = new SqlBuilder();
-
-
-$sqlBuilder
-    ->select("*")
-    ->where("this = < 22");
-
-$sqlBuilder->toString();
+use QueryBuilder\QueryBuilder;
+include_once ("Builder/QueryBuilder.php");
+include_once ("Builder/Select.php");
+$query = (new QueryBuilder())
+    ->select('COALESCE (count(clue.id))')
+    ->from('database')
+    ->where("type=" . " 'something'");
+echo '<br>';
+echo $query;
