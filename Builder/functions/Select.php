@@ -36,6 +36,8 @@ class Select implements QueryInterface
      */
     private $leftJoin = [];
 
+
+    private $group = [];
     /**
      * @var array<string>
      */
@@ -74,6 +76,7 @@ class Select implements QueryInterface
             . ($this->conditions === [] ? '' : ' WHERE ' . implode(' AND ', $this->conditions))
             . ($this->order === [] ? '' : ' ORDER BY ' . implode(', ', $this->order))
             . ($this->having === [] ? '' : ' HAVING ' . implode(', ', $this->having))
+            . ($this->group === [] ? '' : ' GROUP BY ' . implode(', ', $this->group))
             . ($this->limit === null ? '' : ' LIMIT ' . $this->limit);
     }
 
@@ -104,6 +107,13 @@ class Select implements QueryInterface
         $this->limit = $limit;
         return $this;
     }
+
+    public function groupBy(string ...$group): self
+    {
+        $this->group = $group;
+        return $this;
+    }
+
 
     public function orderBy(string ...$order): self
     {

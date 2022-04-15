@@ -11,8 +11,9 @@ echo '<br>';
 echo $query;
 
 $query2 = (new QueryBuilder())
-    ->insert('table_name')
-    ->columns("1", "2", "3")
-    ->values("4", "5", "6");
+    ->select('table_name')
+    ->from('test')
+    ->groupBy('test2')
+    ->orderBy('test');
 echo '<br>';
 echo $query2;
