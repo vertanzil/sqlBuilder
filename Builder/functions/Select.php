@@ -1,7 +1,7 @@
 <?php
 
 namespace QueryBuilder;
-include_once ("Builder/interfaces/QueryInterface.php");
+include_once ("./Builder/interfaces/QueryInterface.php");
 use QueryBuilder\Interfaces\QueryInterface;
 
 class Select implements QueryInterface
@@ -37,10 +37,21 @@ class Select implements QueryInterface
     private $leftJoin = [];
 
     /**
+     * @var array<string>
+     */
+    private $having = [];
+
+
+
+    /**
      * @var int|null
      */
     private $limit;
 
+    /**
+     * Select constructor.
+     * @param array $select
+     */
     public function __construct(array $select)
     {
         $this->fields = $select;
@@ -58,10 +69,11 @@ class Select implements QueryInterface
     {
         return 'SELECT ' . implode(', ', $this->fields)
             . ' FROM ' . implode(', ', $this->from)
-            . ($this->leftJoin === [] ? '' : ' LEFT JOIN '. implode(' LEFT JOIN ', $this->leftJoin))
-            . ($this->innerJoin === [] ? '' : ' INNER JOIN '. implode(' INNER JOIN ', $this->innerJoin))
+            . ($this->leftJoin === [] ? '' : ' LEFT JOIN ' . implode(' LEFT JOIN ', $this->leftJoin))
+            . ($this->innerJoin === [] ? '' : ' INNER JOIN ' . implode(' INNER JOIN ', $this->innerJoin))
             . ($this->conditions === [] ? '' : ' WHERE ' . implode(' AND ', $this->conditions))
             . ($this->order === [] ? '' : ' ORDER BY ' . implode(', ', $this->order))
+            . ($this->having === [] ? '' : ' HAVING ' . implode(', ', $this->having))
             . ($this->limit === null ? '' : ' LIMIT ' . $this->limit);
     }
 
@@ -69,6 +81,14 @@ class Select implements QueryInterface
     {
         foreach ($where as $arg) {
             $this->conditions[] = $arg;
+        }
+        return $this;
+    }
+
+    public function having(string ...$having): self
+    {
+        foreach ($having as $arg) {
+            $this->having[] = $arg;
         }
         return $this;
     }
@@ -110,4 +130,6 @@ class Select implements QueryInterface
         }
         return $this;
     }
+
+
 }

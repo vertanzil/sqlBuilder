@@ -3,7 +3,7 @@
 namespace QueryBuilder;
 
 use QueryBuilder\Interfaces\QueryInterface;
-
+include_once ("./Builder/interfaces/QueryInterface.php");
 class Delete implements QueryInterface
 {
     /**
