@@ -140,6 +140,4 @@ class Select implements QueryInterface
         }
         return $this;
     }
-
-
 }
