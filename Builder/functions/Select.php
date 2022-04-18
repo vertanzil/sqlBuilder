@@ -74,9 +74,9 @@ class Select implements QueryInterface
             . ($this->leftJoin === [] ? '' : ' LEFT JOIN ' . implode(' LEFT JOIN ', $this->leftJoin))
             . ($this->innerJoin === [] ? '' : ' INNER JOIN ' . implode(' INNER JOIN ', $this->innerJoin))
             . ($this->conditions === [] ? '' : ' WHERE ' . implode(' AND ', $this->conditions))
-            . ($this->order === [] ? '' : ' ORDER BY ' . implode(', ', $this->order))
-            . ($this->having === [] ? '' : ' HAVING ' . implode(', ', $this->having))
             . ($this->group === [] ? '' : ' GROUP BY ' . implode(', ', $this->group))
+            . ($this->having === [] ? '' : ' HAVING ' . implode(', ', $this->having))
+            . ($this->order === [] ? '' : ' ORDER BY ' . implode(', ', $this->order))
             . ($this->limit === null ? '' : ' LIMIT ' . $this->limit);
     }
 
